@@ -1,4 +1,4 @@
-#summary The reasons why this library should exists (WIP).
+#summary The reasons why this library exists (WIP).
 
 I programmed console apps before on window$ and when I came to linux, linux users said to me: "If you want pseudo GUI on a console, you should use ncurses". Then I watched the source code of this library and its API and it was horrible.
 
