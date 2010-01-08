@@ -1,0 +1,26 @@
+#summary The reasons why this library should exists (WIP).
+
+I programmed console apps before on window$ and when I came to linux, linux users said to me: "If you want pseudo GUI on a console, you should use ncurses". Then I watched the source code of this library and its API and it was horrible.
+
+The very basic idea of this library comes from a design of the window$ console. Let's see how my vision of the console differs from traditional linux terminal emulation:
+
+|| *Category* || *My vision* || *Traditional vision* ||
+||Output||Think of a console as an array of characters with few possible parameters (foreground, background colors). Also of course there are few additional features which I use mainly as a decoration (e.g. cursor).||Linux console didn't get far from terminals it emulates. Basically all output is just a sequence of characters. Some sequences may be recognized as commands (change color, move cursor, break line, etc.).||
+||Input||Input is presented by incoming message-based events. Key event or resize event (just like in window environments).||Input is just an incoming array of bytes, which mean everything you want them to mean.||
+
+The *first* problem I see here is how GNU people (or anyone else who believes in the power of ncurses and terminals) see the software portability. 
+
+They think that the library is considered portable when it provides you with all possible options available on all possible platforms (via tons of #ifdefs). And therefore it forces a library user (e.g. programmer) to be aware of all this shit. 
+
+I think the portability is a common interface between as much as possible platforms. And when the programmer writes an application with portable library, he should not even think about different platforms and possible issues that might be arisen here. But of course this is a perfection, an ideal.. The reality is slighlty different.
+
+So, the goal of termbox is not providing all possible options to you, but is to provide a common interface to as much as possible terminal emulators. That's where restrictions of this library come from.
+
+The *second* one is an interface. It's freakin' horrible. Basically the ncurses.h it a zillion of functions and macros and most of them you don't really need. A lots of functions that does the same thing and therefore not doing this one thing well. Stupid function names came from unix 70s. Horrible unicode support. Absence of any kind of the design. 
+
+The *third* one is the way it does the GUI. A lot of time ago, there were slow terminals with horrible bit rates which were connected to the big server machine. And as a good programming solution ncurses actually tries to optimize the ammount of data coming from the server to the terminal. It does this obviously to make terminals work faster. But nowadays we don't have terminals anymore! We have terminal emulators which reside on the same machine. Exchange rates are not a problem anymore.
+
+Termbox doesn't care about any optimizations at all and as a result it spends 2/3 (approx.) less processor time than the ncurses.
+
+
+I think as a result of this fresh look, termbox just does all you (or should I say most of you) need and nothing more.
