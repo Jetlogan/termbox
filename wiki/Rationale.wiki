@@ -16,7 +16,7 @@ I think the portability is a common interface between as much as possible platfo
 
 So, the goal of termbox is not providing all possible options to you, but is to provide a common interface to as much as possible terminal emulators. That's where restrictions of this library come from.
 
-The *second* one is an interface. It's freakin' horrible. Basically the ncurses.h it a zillion of functions and macros and most of them you don't really need. A lots of functions that does the same thing and therefore not doing this one thing well. Stupid function names came from unix 70s. Horrible unicode support. Absence of any kind of the design. 
+The *second* one is an interface. It's freakin' horrible. Basically the ncurses.h is a zillion of functions and macros and most of them you don't really need. A lots of functions that does the same thing and therefore not doing this one thing well. Stupid function names came from unix 70s. Horrible unicode support. Absence of any kind of the design. 
 
 The *third* one is the way it does a GUI. A lot of time ago, there were slow terminals with horrible bit rates which were connected to a big server machine. And as a good programming solution ncurses actually tries to optimize an amount of data coming from a server to a terminal. It does this obviously to make terminals work faster. But nowadays we don't have terminals anymore! We have terminal emulators which reside on the same machine. Exchange rates are not a problem anymore.
 
